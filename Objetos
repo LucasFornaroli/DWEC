@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario y Botones</title>
+</head>
+<body>
+    <h1>Introduce tus datos</h1>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombreInput">
+    <br>
+    <label for="apellido">Apellido:</label>
+    <input type="text" id="apellidoInput">
+    <br>
+    <label for="edad">Edad:</label>
+    <input type="text" id="edadInput">
+    <br>
+    <button onclick="guardarDatos()">Guardar Datos</button>
+    <button onclick="mostrarDatos()">Mostrar Datos</button>
+    <div id="resultado"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+function Persona(nombre, apellido, edad) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.edad = edad;
+}
+
+Persona.prototype.mostrarInfo = function() {
+    return `Nombre: ${this.nombre}, Apellido: ${this.apellido}, Edad: ${this.edad}`;
+};
+
+let persona;
+
+function guardarDatos() {
+    const nombre = document.getElementById("nombreInput").value;
+    const apellido = document.getElementById("apellidoInput").value;
+    const edad = document.getElementById("edadInput").value;
+
+    persona = new Persona(nombre, apellido, edad);
+
+    alert("Datos guardados!");
+}
+
+function mostrarDatos() {
+    if (persona) {
+        const resultado = document.getElementById("resultado");
+        resultado.innerHTML = persona.mostrarInfo();
+    } else {
+        alert("Por favor, primero guarda los datos.");
+    }
+}
+
+
